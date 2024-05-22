@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    App Planner
+{% endblock titulo %}
+{% block contenido %}
+<div class="container my-5">
+    <h3 class="pb-3 border-bottom">Proyectos</h3>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+        <a class="btn btn-primary me-md-2" href="{% url 'planner:proyecto_create' %}" role="button">Crear Proyecto</a>
+        <a class="btn btn-outline-primary" href="{% url 'planner:proyecto_list' %}" role="button">Listar Proyectos</a>
+    </div>
+
+    <h3 class="pb-3 border-bottom">Tareas</h3>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+        <a class="btn btn-success me-md-2" href="{% url 'planner:tarea_create' %}" role="button">Crear Tarea</a>
+        <a class="btn btn-outline-success" href="{% url 'planner:tarea_list' %}" role="button">Listar Tareas</a>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+        <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
+    </div>
+</div>
+{% endblock contenido %}
