@@ -89,7 +89,7 @@ class ProyectoCreate(CreateView):
 class ProyectoUpdate(UpdateView):
     model = models.Proyecto
     form_class = forms.ProyectoForm
-    success_url = reverse_lazy("planner:Proyecto_list")
+    success_url = reverse_lazy("planner:proyecto_list")
 
 
 # DETAIL
