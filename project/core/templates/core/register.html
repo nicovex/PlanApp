@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %}
+    Registro
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <div class="container">
+        <h1 class="mt-4">Registro de usuario</h1>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Registrar nuevo usuario</button>
+    </form>
+
+
+{% endblock contenido %}

@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block titulo %}
+    {% include 'core/components/titulo1.html' with titulo="PlanApp" %}
+{% endblock titulo %}
+{% block contenido %}
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5">
+            <img class="img-fluid rounded mb-4 mb-lg-0"
+                 src="{% static 'core/img/yo.jpg' %}"
+                 alt="..." />
+        </div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Acerca de mí</h1>
+            <p>
+                Soy un apasionado por la tecnología, incursionando en el mundo de la programación con Python.
+                Oriundo de Corrientes, Argentina, disfruto de la vida al aire libre, la navegación y la buena comida.
+            </p>
+            <p>
+                De profesión Ing. Químico, espero poder incorporar herramientas y desarrollar proyectos en mi ámbito laboral.
+            </p>
+            <p>
+                PlanApp es una aplicación web diseñada para optimizar la gestión de proyectos y tareas.
+                Permite crear, organizar y asignar tareas, facilitando la colaboración en equipo y el seguimiento del progreso.
+            </p>
+
+            <a class="btn btn-primary"
+               href="mailto:nicovexel@gmail.com"
+               target="_blank">Email</a>
+        </div>
+    </div>
+    <!-- Call to Action-->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <p class="text-white m-0">
+                PlanApp: Simplifica tu planificación, maximiza tu productividad.
+            </p>
+        </div>
+    </div>
+{% endblock contenido %}

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>
+            {% block title %}
+                PlanApp
+            {% endblock title %}
+        </title>
+        <!-- Favicon-->
+        <link rel="icon"
+              type="image/x-icon"
+              href="{% static 'core/assets/favicon.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        {% include 'core/components/navbar.html' %}
+        <!-- Page Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row align-items-center my-5">
+                <h1 class="pb-lg-3 text-white bg-info px-3 py-2 rounded">
+                    {% block titulo %}
+                        PlanApp
+                    {% endblock titulo %}
+                </h1>
+            </div>
+            {% block contenido %}
+            {% endblock contenido %}
+        </div>
+        <!-- Footer -->
+        {% include 'core/components/footer.html' %}
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'core/js/scripts.js' %}"></script>
+    </body>
+</html>
