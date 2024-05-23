@@ -8,9 +8,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>
-            {% block title %}
+            {% block titulo %}
                 PlanApp
-            {% endblock title %}
+            {% endblock titulo %}
         </title>
         <!-- Favicon-->
         <link rel="icon"
@@ -25,11 +25,6 @@
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <div class="row align-items-center my-5">
-                <h1 class="pb-lg-3 text-white bg-info px-3 py-2 rounded">
-                    {% block titulo %}
-                        PlanApp
-                    {% endblock titulo %}
-                </h1>
             </div>
             {% block contenido %}
             {% endblock contenido %}
