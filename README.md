@@ -3,20 +3,18 @@
 ### Comisión: 54135 - CoderHouse
 
 ## Descripción del proyecto
-2 Apps, planner y core
-dos modelos con campos de texto, número, fecha
-vista de listado de registros de un modelo
-vista del detalle de un registro de un modelo
-vista para crear un registro de un modelo
-vista para eliminar un registro de un modelo
-about/ que hable sobre el creador del proyecto
+* El proyecto consiste en un administrador de tareas que forman parte de un proyecto con fecha de inicio y fin.
+
+* El proyecto tiene 2 Apps, planner y core.La app planner cuenta con dos modelos con campos de texto, número, fecha e incluye distintas vistas de listado de registros, del detalle de un registro, de creacion de un registro y para eliminarlo.
+
+* Se incluye un about/ que habla sobre el creador del proyecto.
 
 ## Tecnología utilizada
 ### Front-End
-HTML 5
-Bootstrap 5.2
+* HTML 5
+* Bootstrap 5.2
 ### Back-End
-Python 3.10.4
-Django 4.0
+* Python 3.12.1
+* Django 5.0.6
 
-## Video de demostración
+## [Video de demostración](youtube.com)
