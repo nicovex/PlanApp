@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Planner: Lista de Proyectos
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <div class="py-lg-4 ">
+        <form action="{% url 'planner:proyecto_list' %}" method="get">
+            <input type="text" name="consulta" placeholder="Buscar...">
+        </form>
+    </div>
+    <ul>
+        {% for proyecto in object_list %}
+            <li>{{ proyecto.nombre }}
+                <a href="{% url 'planner:proyecto_detail' proyecto.id %}">Detalle</a>
+                <a href="{% url 'planner:proyecto_update' proyecto.id %}">Cambiar</a>
+                <a href="{% url 'planner:proyecto_delete' proyecto.id %}">Borrar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="fs-3 pb-4">
+        <a href="{% url 'planner:home' %}">Volver al inicio de Planner</a>
+    </div>
+
+{% endblock contenido %}

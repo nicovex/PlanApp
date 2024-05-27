@@ -1,5 +1,6 @@
 # Create your views here.
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
@@ -14,7 +15,7 @@ from django.views.generic import (
 
 from . import forms, models
 
-
+@login_required
 def home(request):
     return render(request, "planner/index.html")
 
@@ -33,7 +34,7 @@ def home(request):
 #     return render(request, "Tarea/Proyecto_list.html", context)
 
 
-class ProyectoList(ListView):
+class ProyectoList(ListView, LoginRequiredMixin):
     model = models.Proyecto
 
     # context_object_name = "Tareas"
@@ -67,7 +68,7 @@ class ProyectoList(ListView):
 #     return render(request, "Tarea/Proyecto_create.html", context={"form": form})
 
 
-class ProyectoCreate(CreateView):
+class ProyectoCreate(CreateView, LoginRequiredMixin):
     model = models.Proyecto
     form_class = forms.ProyectoForm
     success_url = reverse_lazy("planner:home")
@@ -86,7 +87,7 @@ class ProyectoCreate(CreateView):
 #     return render(request, "Tarea/Proyecto_update.html", context={"form": form})
 
 
-class ProyectoUpdate(UpdateView):
+class ProyectoUpdate(UpdateView, LoginRequiredMixin):
     model = models.Proyecto
     form_class = forms.ProyectoForm
     success_url = reverse_lazy("planner:proyecto_list")
@@ -98,7 +99,7 @@ class ProyectoUpdate(UpdateView):
 #     return render(request, "Tarea/Proyecto_detail.html", {"Tarea": query})
 
 
-class ProyectoDetail(DetailView):
+class ProyectoDetail(DetailView, LoginRequiredMixin):
     model = models.Proyecto
     # context_object_name = "Tarea"
 
@@ -121,7 +122,7 @@ class ProyectoDelete(LoginRequiredMixin, DeleteView):
 # *** Tarea
 
 
-class TareaList(ListView):
+class TareaList(ListView, LoginRequiredMixin):
     model = models.Tarea
 
     def get_queryset(self) -> QuerySet:
@@ -133,19 +134,19 @@ class TareaList(ListView):
         return object_list
 
 
-class TareaCreate(CreateView):
+class TareaCreate(CreateView, LoginRequiredMixin):
     model = models.Tarea
     form_class = forms.TareaForm
     success_url = reverse_lazy("planner:home")
 
 
-class TareaUpdate(UpdateView):
+class TareaUpdate(UpdateView, LoginRequiredMixin):
     model = models.Tarea
     form_class = forms.TareaForm
     success_url = reverse_lazy("planner:tarea_list")
 
 
-class TareaDetail(DetailView):
+class TareaDetail(DetailView, LoginRequiredMixin):
     model = models.Tarea
 
 

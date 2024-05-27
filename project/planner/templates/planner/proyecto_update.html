@@ -1,13 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block titulo %}
-    Tarea: 
-    {% if form.instance.pk %}
-        Editar
-    {% else %}
-        Crear
-    {% endif %}
-    Tareas
+    Planner: Modificar un Proyecto
 {% endblock titulo %}
 
 {% block contenido %}
@@ -20,7 +14,7 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
     <div class="fs-3 pb-4">
-        <a href="{% url 'planner:home' %}">Volver al inicio de Planner</a>
+        <a href="{% url 'planner:proyecto_list' %}">Volver</a>
     </div>
 
 {% endblock contenido %}

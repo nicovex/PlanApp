@@ -13,6 +13,8 @@ class Tarea(models.Model):
     # responsable = models.OneToOneField()
     estado_id = models.ForeignKey(Estado, null=True, blank=True, on_delete=models.SET_NULL)
 
+    def __str__(self) -> str:
+        return self.nombre
 
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=50, unique=True)

@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -10,7 +7,7 @@ from django.shortcuts import render
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 
-# @login_required
+#@login_required
 def home(request):
     return render(request, "core/index.html")
 
@@ -22,7 +19,7 @@ class CustomLoginView(LoginView):
     template_name = "core/login.html"
 
 
-@staff_member_required
+# @staff_member_required
 def register(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)

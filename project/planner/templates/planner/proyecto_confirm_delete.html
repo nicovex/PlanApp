@@ -1,23 +1,16 @@
 {% extends 'core/base.html' %}
 
 {% block titulo %}
-    Tarea: 
-    {% if form.instance.pk %}
-        Editar
-    {% else %}
-        Crear
-    {% endif %}
-    Tareas
+    Planner: Borrar un Proyecto
 {% endblock titulo %}
 
 {% block contenido %}
     
+    <p class="fs-5 fst-italic">¿Confirma eliminar "{{ object.nombre }}"?</p>
+
     <form method="post">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-danger">Confirmar</button>
     </form>
     <div class="fs-3 pb-4">
         <a href="{% url 'planner:home' %}">Volver al inicio de Planner</a>
