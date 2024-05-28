@@ -21,7 +21,7 @@ class ProyectoAdmin(admin.ModelAdmin):
 
 class TareaAdmin(admin.ModelAdmin):
     
-    list_display = ("nombre", "estado_id")
+    list_display = ("nombre", "completada")
     list_display_links = ("nombre",)
 
 

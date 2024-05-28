@@ -6,7 +6,7 @@
     <div class="container my-5">
         <div class="py-4">
             <form class="input-group mb-3"
-                  action="{% url 'planner:tareas_list' %}"
+                  action="{% url 'planner:tarea_list' %}"
                   method="get">
                 <input type="text"
                        class="form-control"
@@ -29,11 +29,11 @@
                         <td>{{ tarea.nombre }}</td>
                         <td>
                             <a class="btn btn-info btn-sm me-1"
-                               href="{% url 'planner:tareas_detail' tarea.id %}">Detalle</a>
+                               href="{% url 'planner:tarea_detail' tarea.id %}">Detalle</a>
                             <a class="btn btn-warning btn-sm me-1"
-                               href="{% url 'planner:tareas_update' tarea.id %}">Cambiar</a>
+                               href="{% url 'planner:tarea_update' tarea.id %}">Cambiar</a>
                             <a class="btn btn-danger btn-sm"
-                               href="{% url 'planner:tareas_delete' tarea.id %}">Borrar</a>
+                               href="{% url 'planner:tarea_delete' tarea.id %}">Borrar</a>
                         </td>
                     </tr>
                 {% endfor %}

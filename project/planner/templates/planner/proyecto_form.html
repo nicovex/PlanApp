@@ -17,10 +17,28 @@
         <table>
             {{ form.as_table }}
         </table>
+        <button type="button" id="add-tareas-btn" class="btn btn-secondary">Añadir Tareas</button>
+        <div id="tareas-formset" style="display: none;">
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form.as_table }}
+            {% endfor %}
+        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
     <div class="fs-3 pb-4">
         <a href="{% url 'planner:home' %}">Volver al inicio de Planner</a>
     </div>
+
+    <script>
+        document.getElementById('add-tareas-btn').addEventListener('click', function() {
+            var tareasFormset = document.getElementById('tareas-formset');
+            if (tareasFormset.style.display === 'none') {
+                tareasFormset.style.display = 'block';
+            } else {
+                tareasFormset.style.display = 'none';
+            }
+        });
+    </script>
 
 {% endblock contenido %}

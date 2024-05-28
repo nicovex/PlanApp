@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.models import modelformset_factory
 from . import models
 
 class ProyectoForm(forms.ModelForm):
@@ -10,3 +11,5 @@ class TareaForm(forms.ModelForm):
     class Meta:
         model = models.Tarea
         fields = "__all__"
+
+TareaFormSet = modelformset_factory(models.Tarea, fields=("__all__"), extra=1)
