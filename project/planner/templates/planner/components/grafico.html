@@ -1,0 +1,66 @@
+
+<canvas id="tareasChart" width="100" height="100" style="width: 100px; height: 100px;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const ctx = document.getElementById('tareasChart').getContext('2d');
+        const proyectosData = {{ proyectos_data|safe }};
+
+        const labels = proyectosData.map(proyecto => proyecto.nombre);
+        const completadasData = proyectosData.map(proyecto => proyecto.tareas_completadas);
+        const noCompletadasData = proyectosData.map(proyecto => proyecto.tareas_no_completadas);
+
+        const rootStyles = getComputedStyle(document.documentElement);
+        const colorCompletadas = rootStyles.getPropertyValue('--color-completadas').trim();
+        const colorNoCompletadas = rootStyles.getPropertyValue('--color-no-completadas').trim();
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Tareas Completadas',
+                data: completadasData,
+                backgroundColor: 'colorCompletadas',
+                borderColor: 'colorCompletadas',
+                borderWidth: 1
+            }, {
+                label: 'Tareas No Completadas',
+                data: noCompletadasData,
+                backgroundColor: 'colorNoCompletadas',
+                borderColor: 'colorNoCompletadas',
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+        };
+
+        new Chart(ctx, config);
+    });
+</script>

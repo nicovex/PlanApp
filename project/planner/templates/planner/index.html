@@ -20,8 +20,12 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          {% include 'planner/components/grafico.html' %}
+        </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 my-5">
         <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
     </div>
 </div>
+
 {% endblock contenido %}

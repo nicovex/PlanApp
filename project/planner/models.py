@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 # class Estado(models.Model):
@@ -13,7 +14,15 @@ class Proyecto(models.Model):
     descripcion = models.CharField(max_length=250, null=True, blank=True, verbose_name="descripción")
     fecha_inicio = models.DateField(null=True, blank=True, default=timezone.now)
     fecha_fin = models.DateField(null=True, blank=True, default=timezone.now)
-    tareas = models.ManyToManyField('Tarea', blank=True, related_name='proyectos')
+    responsable = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='proyectos_responsable')
+    
+    @property
+    def avance(self):
+        total_tareas = self.related_tareas.count()
+        if total_tareas == 0:
+            return 0
+        tareas_completadas = self.related_tareas.filter(completada=True).count()
+        return (tareas_completadas / total_tareas) * 100
     
     def __str__(self) -> str:
         """Representa una instancia del modelo como una cadena de texto"""

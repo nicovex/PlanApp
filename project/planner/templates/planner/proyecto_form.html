@@ -18,7 +18,7 @@
             {{ form.as_table }}
         </table>
         <button type="button" id="add-tareas-btn" class="btn btn-secondary">Añadir Tareas</button>
-        <div id="tareas-formset" style="display: none;">
+            <div id="tareas-formset" style="display: none;">
             {{ formset.management_form }}
             {% for form in formset %}
                 {{ form.as_table }}

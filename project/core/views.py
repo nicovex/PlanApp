@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-
+from . import models
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 

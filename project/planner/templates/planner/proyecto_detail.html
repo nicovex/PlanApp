@@ -1,4 +1,6 @@
 {% extends 'core/base.html' %}
+{% comment  %}
+
 {% block titulo %}
     Planner: Detalle de un Proyecto
 {% endblock titulo %}
@@ -14,4 +16,50 @@
         <a href="{% url 'planner:proyecto_list' %}">Volver</a>
     </div>
 
+{% endblock contenido %}
+{% endcomment %}
+
+{% block titulo %}
+    Planner: Detalle de Proyecto
+{% endblock titulo %}
+{% block contenido %}
+    <div class="container my-5">
+        <div class="py-4">
+            <form class="input-group mb-3"
+                  action="{% url 'planner:proyecto_list' %}"
+                  method="get">
+                <input type="text"
+                       class="form-control"
+                       name="consulta"
+                       placeholder="Buscar..."
+                       aria-label="Buscar">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+            </form>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Proyecto</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">Inicio</th>
+                    <th scope="col">Fin</th>
+                    <th scope="col">Responsable</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>{{ object.nombre }}</td>
+                        <td>{{ object.descpricion }}</td>
+                        <td>{{ object.fecha_inicio }}</td>
+                        <td>{{ object.fecha_fin }}</td>
+                        <td>{{ object.responsable }}</td>
+                    </tr>
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <a class="btn btn-secondary"
+               href="{% url 'planner:home' %}"
+               role="button">Volver al inicio de Planner</a>
+        </div>
+    </div>
 {% endblock contenido %}

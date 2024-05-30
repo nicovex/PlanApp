@@ -2,26 +2,47 @@
 {% block titulo %}
     Planner: Lista de Proyectos
 {% endblock titulo %}
-
 {% block contenido %}
-
-    <div class="py-lg-4 ">
-        <form action="{% url 'planner:proyecto_list' %}" method="get">
-            <input type="text" name="consulta" placeholder="Buscar...">
-        </form>
+    <div class="container my-5">
+        <div class="py-4">
+            <form class="input-group mb-3"
+                  action="{% url 'planner:proyecto_list' %}"
+                  method="get">
+                <input type="text"
+                       class="form-control"
+                       name="consulta"
+                       placeholder="Buscar..."
+                       aria-label="Buscar">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+            </form>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Proyecto</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proyecto in object_list %}
+                    <tr>
+                        <td>{{ proyecto.nombre }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm me-1"
+                               href="{% url 'planner:proyecto_detail' proyecto.id %}">Detalle</a>
+                            <a class="btn btn-warning btn-sm me-1"
+                               href="{% url 'planner:proyecto_update' proyecto.id %}">Cambiar</a>
+                            <a class="btn btn-danger btn-sm"
+                               href="{% url 'planner:proyecto_delete' proyecto.id %}">Borrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <a class="btn btn-secondary"
+               href="{% url 'planner:home' %}"
+               role="button">Volver al inicio de Planner</a>
+        </div>
     </div>
-    <ul>
-        {% for proyecto in object_list %}
-            <li>{{ proyecto.nombre }}
-                <a href="{% url 'planner:proyecto_detail' proyecto.id %}">Detalle</a>
-                <a href="{% url 'planner:proyecto_update' proyecto.id %}">Cambiar</a>
-                <a href="{% url 'planner:proyecto_delete' proyecto.id %}">Borrar</a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <div class="fs-3 pb-4">
-        <a href="{% url 'planner:home' %}">Volver al inicio de Planner</a>
-    </div>
-
 {% endblock contenido %}

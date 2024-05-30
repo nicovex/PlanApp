@@ -19,6 +19,25 @@ from . import forms, models
 def home(request):
     return render(request, "planner/index.html")
 
+    # proyectos = models.Proyecto.objects.all()
+    # proyectos_data = []
+
+    # for proyecto in proyectos:
+    #     total_tareas = proyecto.tareas.count()
+    #     tareas_completadas = proyecto.tareas.filter(completada=True).count()
+    #     tareas_no_completadas = total_tareas - tareas_completadas
+    #     proyectos_data.append({
+    #         'nombre': proyecto.nombre,
+    #         'total_tareas': total_tareas,
+    #         'tareas_completadas': tareas_completadas,
+    #         'tareas_no_completadas': tareas_no_completadas,
+    #     })
+
+    # context = {
+    #     'proyectos_data': proyectos_data,
+    # }
+    return render(request, 'planner/index.html', context)
+
 
 # *** TareaCATEOGORIA
 
