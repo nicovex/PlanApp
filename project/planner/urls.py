@@ -21,3 +21,6 @@ urlpatterns += [
     path("tarea/update/<int:pk>", views.TareaUpdate.as_view(), name="tarea_update"),
     path("tarea/delete/<int:pk>", views.TareaDelete.as_view(), name="tarea_delete"),
 ]
+
+urlpatterns += [
+    path("responsable/", views.ResponsableCreate.as_view(), name="responsable"),]

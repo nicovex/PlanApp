@@ -29,19 +29,13 @@ PlanApp - Home
                target="_blank">Ingresar</a>
         </div>
     </div>
-    <!-- Call to Action-->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-        <div class="card-body">
-            <p class="text-white m-0">
-                PlanApp: Simplifica tu planificación, maximiza tu productividad.
-            </p>
-        </div>
-    </div>
     <!-- Content Row-->
     <div class="row gx-4 gx-lg-5">
         {% if user.is_authenticated %}
-        {% include 'core/components/card.html' with titulo="Proyectos" texto="Ingresa tu proyecto" link='planner:home' %}
-        {% include 'core/components/card.html' with titulo="Tareas" texto="Administra tus tareas!" link='planner:home' %}
+        {% include 'core/components/card.html' with titulo="Proyectos" texto="Administra tu proyecto" link='planner:proyecto_list' %}
+        {% include 'core/components/card.html' with titulo="Tareas" texto="Administra tus tareas" link='planner:tarea_list' %}
         {% endif %}
     </div>
+    <!-- Call to Action-->
+    {% include 'core/components/calltoaction.html' %}
 {% endblock contenido %}

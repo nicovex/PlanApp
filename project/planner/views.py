@@ -17,7 +17,7 @@ from . import forms, models
 
 @login_required
 def home(request):
-    return render(request, "planner/index.html")
+    # return render(request, "planner/index.html")
 
     # proyectos = models.Proyecto.objects.all()
     # proyectos_data = []
@@ -36,7 +36,7 @@ def home(request):
     # context = {
     #     'proyectos_data': proyectos_data,
     # }
-    return render(request, 'planner/index.html', context)
+    return render(request, 'planner/index.html') #context)
 
 
 # *** TareaCATEOGORIA
@@ -92,27 +92,27 @@ class ProyectoCreate(CreateView, LoginRequiredMixin):
     form_class = forms.ProyectoForm
     success_url = reverse_lazy("planner:home")
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        if self.request.POST:
-            data['formset'] = forms.TareaFormSet(self.request.POST)
-        else:
-            data['formset'] = forms.TareaFormSet(queryset=models.Tarea.objects.none())
-        return data
+    # def get_context_data(self, **kwargs):
+    #     data = super().get_context_data(**kwargs)
+    #     if self.request.POST:
+    #         data['formset'] = forms.TareaFormSet(self.request.POST)
+    #     else:
+    #         data['formset'] = forms.TareaFormSet(queryset=models.Tarea.objects.none())
+    #     return data
 
-    def form_valid(self, form):
-        context = self.get_context_data()
-        formset = context['formset']
-        if formset.is_valid():
-            self.object = form.save(commit=False)  # Guardar el proyecto sin confirmarlo aún
-            tareas = formset.save(commit=False)  # Guardar las tareas sin confirmarlas aún
-            self.object.save()  # Ahora guardar el proyecto para obtener el ID
-            for tarea in tareas:
-                tarea.proyecto = self.object  # Asignar el proyecto a cada tarea
-                tarea.save()  # Guardar la tarea con la relación al proyecto
-            return redirect(self.get_success_url())
-        else:
-            return self.form_invalid(form)
+    # def form_valid(self, form):
+    #     context = self.get_context_data()
+    #     formset = context['formset']
+    #     if formset.is_valid():
+    #         self.object = form.save(commit=False)  # Guardar el proyecto sin confirmarlo aún
+    #         tareas = formset.save(commit=False)  # Guardar las tareas sin confirmarlas aún
+    #         self.object.save()  # Ahora guardar el proyecto para obtener el ID
+    #         for tarea in tareas:
+    #             tarea.proyecto = self.object  # Asignar el proyecto a cada tarea
+    #             tarea.save()  # Guardar la tarea con la relación al proyecto
+    #         return redirect(self.get_success_url())
+    #     else:
+    #         return self.form_invalid(form)
 
 
 # UPDATE
@@ -133,27 +133,27 @@ class ProyectoUpdate(UpdateView, LoginRequiredMixin):
     form_class = forms.ProyectoForm
     success_url = reverse_lazy("planner:proyecto_list")
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        if self.request.POST:
-            data['formset'] = forms.TareaFormSet(self.request.POST, instance=self.object)
-        else:
-            data['formset'] = forms.TareaFormSet(queryset=models.Tarea.objects.filter(proyecto=self.object))
-        return data
+    # def get_context_data(self, **kwargs):
+    #     data = super().get_context_data(**kwargs)
+    #     if self.request.POST:
+    #         data['formset'] = forms.TareaFormSet(self.request.POST, instance=self.object)
+    #     else:
+    #         data['formset'] = forms.TareaFormSet(queryset=models.Tarea.objects.filter(proyecto=self.object))
+    #     return data
 
-    def form_valid(self, form):
-        context = self.get_context_data()
-        formset = context['formset']
-        if formset.is_valid():
-            self.object = form.save(commit=False)  # Guardar el proyecto sin confirmarlo aún
-            tareas = formset.save(commit=False)  # Guardar las tareas sin confirmarlas aún
-            self.object.save()  # Ahora guardar el proyecto para obtener el ID
-            for tarea in tareas:
-                tarea.proyecto = self.object  # Asignar el proyecto a cada tarea
-                tarea.save()  # Guardar la tarea con la relación al proyecto
-            return redirect(self.get_success_url())
-        else:
-            return self.form_invalid(form)
+    # def form_valid(self, form):
+    #     context = self.get_context_data()
+    #     formset = context['formset']
+    #     if formset.is_valid():
+    #         self.object = form.save(commit=False)  # Guardar el proyecto sin confirmarlo aún
+    #         tareas = formset.save(commit=False)  # Guardar las tareas sin confirmarlas aún
+    #         self.object.save()  # Ahora guardar el proyecto para obtener el ID
+    #         for tarea in tareas:
+    #             tarea.proyecto = self.object  # Asignar el proyecto a cada tarea
+    #             tarea.save()  # Guardar la tarea con la relación al proyecto
+    #         return redirect(self.get_success_url())
+    #     else:
+    #         return self.form_invalid(form)
 
 
 # DETAIL
@@ -200,6 +200,7 @@ class TareaList(ListView, LoginRequiredMixin):
 class TareaCreate(CreateView, LoginRequiredMixin):
     model = models.Tarea
     form_class = forms.TareaForm
+    # proyecto = models.Tarea.proyecto
     success_url = reverse_lazy("planner:home")
 
 
@@ -216,3 +217,8 @@ class TareaDetail(DetailView, LoginRequiredMixin):
 class TareaDelete(LoginRequiredMixin, DeleteView):
     model = models.Tarea
     success_url = reverse_lazy("planner:tarea_list")
+
+class ResponsableCreate(LoginRequiredMixin, CreateView):
+    model = models.Responsable
+    form_class = forms.ResponsableForm
+    success_url = reverse_lazy("planner:home")

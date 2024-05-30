@@ -12,4 +12,7 @@ class TareaForm(forms.ModelForm):
         model = models.Tarea
         fields = "__all__"
 
-TareaFormSet = modelformset_factory(models.Tarea, fields=("__all__"), extra=1)
+class ResponsableForm(forms.ModelForm):
+    class Meta:
+        model = models.Responsable
+        fields = "__all__"

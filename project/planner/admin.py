@@ -24,6 +24,10 @@ class TareaAdmin(admin.ModelAdmin):
     list_display = ("nombre", "completada")
     list_display_links = ("nombre",)
 
+class ResponsableAdmin(admin.ModelAdmin):
+    list_display = ("user", "avatar")
+    list_display_links = ("user",)
 
 admin.site.register(models.Proyecto, ProyectoAdmin)
 admin.site.register(models.Tarea, TareaAdmin)
+admin.site.register(models.Responsable, ResponsableAdmin)
