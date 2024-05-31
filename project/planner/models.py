@@ -40,7 +40,7 @@ class Responsable(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
 
     def __str__(self):
-        return f'{self.nombre} {self.apellido} ({self.user.username})'
+        return f'{self.nombre} {self.apellido} ({self.user.get_username})'

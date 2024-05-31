@@ -218,7 +218,18 @@ class TareaDelete(LoginRequiredMixin, DeleteView):
     model = models.Tarea
     success_url = reverse_lazy("planner:tarea_list")
 
-class ResponsableCreate(LoginRequiredMixin, CreateView):
+class ResponsableUpdate(LoginRequiredMixin, UpdateView):
     model = models.Responsable
     form_class = forms.ResponsableForm
-    success_url = reverse_lazy("planner:home")
+    success_url = reverse_lazy("planner:responsable_list")
+
+class ResponsableList(ListView, LoginRequiredMixin):
+    model = models.Responsable
+
+    def get_queryset(self) -> QuerySet:
+        if self.request.GET.get("consulta"):
+            consulta = self.request.GET.get("consulta")
+            object_list = models.Responsable.objects.filter(nombre__icontains=consulta)
+        else:
+            object_list = models.Responsable.objects.all()
+        return object_list

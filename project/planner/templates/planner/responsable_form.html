@@ -6,15 +6,15 @@
 
 {% block contenido %}
     
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
-            {{ form.as_table }}
+            {{ form.as_p }}
         </table>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
     <div class="fs-3 pb-4">
-        <a href="{% url 'planner:home' %}">Volver</a>
+        <a href="{% url 'planner:responsable_list' %}">Volver</a>
     </div>
 
 {% endblock contenido %}

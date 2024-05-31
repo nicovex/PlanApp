@@ -23,4 +23,6 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path("responsable/", views.ResponsableCreate.as_view(), name="responsable"),]
+    path("responsable/list/", views.ResponsableList.as_view(), name="responsable_list"),
+    path("responsable/update/<int:pk>", views.ResponsableUpdate.as_view(), name="responsable_update"),
+    ]
