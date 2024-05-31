@@ -20,6 +20,7 @@
             <thead>
                 <tr>
                     <th scope="col">Tareas</th>
+                    <th scope="col">Completada</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -27,6 +28,12 @@
                 {% for tarea in object_list %}
                     <tr>
                         <td>{{ tarea.nombre }}</td>
+                        <td>{% if tarea.completada %}
+                            Si
+                            {% else %}
+                            No
+                        {% endif %}
+                        </td>
                         <td>
                             <a class="btn btn-info btn-sm me-1"
                                href="{% url 'planner:tarea_detail' tarea.id %}">Detalle</a>
